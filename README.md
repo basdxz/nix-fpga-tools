@@ -4,8 +4,13 @@ This flake packages ISE as a Nix package. It is derived from ISE 14.7 for Window
 ## Prerequisites
 - x86_64 Linux with Nix installed and flakes enabled.
 - The `Xilinx_ISE_14.7_Win10_14.7_VM_0213_1.zip` file - this may be downloaded from the [Xilinx website](https://www.xilinx.com/member/forms/download/xef.html?filename=Xilinx_ISE_14.7_Win10_14.7_VM_0213_1.zip).
-- The zip file must be added to the Nix store. If your machine has a relatively large amount of memory (>>16GB) then this may be done simply by `nix-store --add-fixed sha256 Xilinx_ISE_14.7_Win10_14.7_VM_0213_1.zip`. If your machine has less memory this will either fail, or take an excessive amount of time, this is because Nix loads the entire file into memory during the process. Instead the file may be added to the store manually as [detailed here](https://nixos.wiki/wiki/Cheatsheet#Adding_files_to_the_store).
-- ~100GB of disk space for the install process, once installed the footprint is ~35GB.
+- The zip file needs to be preprocessed. To do this:
+  - Make sure you have 7zz available (`nix shell nixpkgs#_7zz` if not).
+  - Copy the downloaded zip file and the `xilinx-preprocess.sh` file from this repository into a directory with about 100GB of free space.
+  - Run the preprocess script, and wait for it to finish. It will create a file named `xilinx.tar.zstd` in the same directory.
+  - (This preprocessing step is done to avoid rebuilds using 100GB of temp space every time it needs to be built.)
+- The `xilinx.tar.zstd` file must be added to the Nix store. If your machine has a relatively large amount of memory (>>16GB) then this may be done simply by `nix-store --add-fixed sha256 xilinx.tar.zstd`. If your machine has less memory this will either fail, or take an excessive amount of time, this is because Nix loads the entire file into memory during the process. Instead the file may be added to the store manually as [detailed here](https://nixos.wiki/wiki/Cheatsheet#Adding_files_to_the_store).
+- About 35GB of free space on the Nix store partition after you have added the `xilinx.tar.zstd` file.
 
 ## Usage
 - The `xilinx-ise` wrapper can run any tool normally available on `$PATH` with ISE and will forward any arguments. This may be used directly via `nix run`. For example, to get the help for `par` you might run `nix run .#xilinx-ise -- par -?`. Note, the `--` is required so that Nix does not attempt to parse any arguments passed to the target.
