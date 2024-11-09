@@ -40,6 +40,13 @@ in buildFHSUserEnv rec {
     xorg.libXt
     xorg.libXtst
     zlib
+
+    # Xilinx ISE expects QT3 but works fine with QT5.
+    libsForQt5.qtbase
+    libsForQt5.qtdeclarative
+    libsForQt5.qtimageformats
+    libsForQt5.qtsvg
+    libsForQt5.qtx11extras
   ];
 
   multiPkgs = pkgs: with pkgs; [
@@ -101,6 +108,17 @@ in buildFHSUserEnv rec {
     source /opt/Xilinx/14.7/ISE_DS/EDK/.settings64.sh /opt/Xilinx/14.7/ISE_DS/EDK
     source /opt/Xilinx/14.7/ISE_DS/PlanAhead/.settings64.sh /opt/Xilinx/14.7/ISE_DS/PlanAhead
     source /opt/Xilinx/14.7/ISE_DS/ISE/.settings64.sh /opt/Xilinx/14.7/ISE_DS/ISE
+
+    # Required to use QT5 in place of QT6
+    export LD_LIBRARY_PATH=${pkgs.libsForQt5.qtbase}/lib:$LD_LIBRARY_PATH
+    export LD_LIBRARY_PATH=${pkgs.libsForQt5.qtdeclarative}/lib:$LD_LIBRARY_PATH
+    export LD_LIBRARY_PATH=${pkgs.libsForQt5.qtimageformats}/lib:$LD_LIBRARY_PATH
+    export LD_LIBRARY_PATH=${pkgs.libsForQt5.qtsvg}/lib:$LD_LIBRARY_PATH
+    export LD_LIBRARY_PATH=${pkgs.libsForQt5.qtx11extras}/lib:$LD_LIBRARY_PATH
+    export LD_LIBRARY_PATH=${pkgs.libusb-compat-0_1}/lib:$LD_LIBRARY_PATH
+
+    # Copied from the Arch Linux Wiki: https://wiki.archlinux.org/title/Xilinx_ISE_WebPACK#Running_Xilinx_tools_from_within_KDE
+    unset QT_PLUGIN_PATH
 
     # Execute target.
     exec $@
