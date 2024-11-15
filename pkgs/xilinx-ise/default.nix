@@ -22,6 +22,7 @@ in buildFHSUserEnv rec {
     iproute2
     libstdcxx5
     libusb-compat-0_1
+    libusb1
     libuuid
     motif
     (motif3-compat pkgs)
@@ -115,7 +116,9 @@ in buildFHSUserEnv rec {
     export LD_LIBRARY_PATH=${pkgs.libsForQt5.qtimageformats}/lib:$LD_LIBRARY_PATH
     export LD_LIBRARY_PATH=${pkgs.libsForQt5.qtsvg}/lib:$LD_LIBRARY_PATH
     export LD_LIBRARY_PATH=${pkgs.libsForQt5.qtx11extras}/lib:$LD_LIBRARY_PATH
+
     export LD_LIBRARY_PATH=${pkgs.libusb-compat-0_1}/lib:$LD_LIBRARY_PATH
+    export LD_LIBRARY_PATH=${pkgs.libusb1}/lib:$LD_LIBRARY_PATH
 
     # Copied from the Arch Linux Wiki: https://wiki.archlinux.org/title/Xilinx_ISE_WebPACK#Running_Xilinx_tools_from_within_KDE
     unset QT_PLUGIN_PATH
