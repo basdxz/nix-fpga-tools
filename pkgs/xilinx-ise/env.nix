@@ -41,7 +41,7 @@ let
   basePkgs = with pkgs;
     [ glibcLocales
       (if isMultiBuild then glibc_multi else glibc)
-      (toString gcc.cc.lib) bashInteractive coreutils less shadow su
+      (toString gcc.cc.lib) bashInteractive coreutils less shadow su gcc
       gawk diffutils findutils gnused gnugrep
       gnutar gzip bzip2 xz
     ];
