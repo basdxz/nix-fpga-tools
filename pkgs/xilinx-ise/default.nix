@@ -20,7 +20,7 @@ in buildFHSUserEnv rec {
     freetype
     glib
     iproute2
-    libstdcxx5
+    (callPackage ./libstdc++/5.nix { })
     libusb-compat-0_1
     libusb1
     libuuid
