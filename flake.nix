@@ -15,10 +15,6 @@
           xilinx-ise = pkgs.callPackage ./pkgs/xilinx-ise { };
           xilinx-udev-rules = pkgs.callPackage ./pkgs/xilinx-ise/udev-rules.nix { };
         };
-        overlay = self: super: {
-          xilinx-ise = packages.xilinx-ise;
-          xilinx-udev-rules = packages.xilinx-udev-rules;
-        };
         apps = {
           xilinx-ise = {
             type = "app";
@@ -26,5 +22,12 @@
           };
         };
       });
-    in outputs;
+    in outputs // {
+        overlays.default = final: prev: let
+          packages = outputs.packages.${prev.system};
+        in {
+          xilinx-ise = packages.xilinx-ise;
+          xilinx-udev-rules = packages.xilinx-udev-rules;
+        };
+    };
 }
