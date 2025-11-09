@@ -24,7 +24,7 @@
       });
     in outputs // {
         overlays.default = final: prev: let
-          packages = outputs.packages.${prev.system};
+          packages = outputs.packages.${prev.stdenv.hostPlatform.system};
         in {
           xilinx-ise = packages.xilinx-ise;
           xilinx-udev-rules = packages.xilinx-udev-rules;
