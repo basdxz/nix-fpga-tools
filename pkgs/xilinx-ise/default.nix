@@ -1,4 +1,4 @@
-{ stdenv, lib, pkgs, callPackage, writeScript, makeDesktopItem }:
+{ stdenv, lib, pkgs, callPackage, writeScript, makeDesktopItem, libstdcxx5 }:
 
 let
   buildFHSUserEnv = callPackage ./fhs.nix { };
@@ -20,7 +20,7 @@ in buildFHSUserEnv rec {
     freetype
     glib
     iproute2
-    (callPackage ./libstdc++/5.nix { })
+    libstdcxx5
     libusb-compat-0_1
     libusb1
     libuuid

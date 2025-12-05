@@ -33,10 +33,26 @@
         "type": "indirect"
       }
     },
+    "nixpkgs_libstdcxx5": {
+      "locked": {
+        "lastModified": 1732631626,
+        "narHash": "sha256-8+rgprS5YWlEA4vILg/MBKqlgm+HPEdUAhlTFQO0Tmc=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "c8bb7b26f2c6ecc39be2c4ddde5f5d152e4abc65",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "rev": "c8bb7b26f2c6ecc39be2c4ddde5f5d152e4abc65",
+        "type": "indirect"
+      }
+    },
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "nixpkgs_libstdcxx5": "nixpkgs_libstdcxx5"
       }
     },
     "systems": {
