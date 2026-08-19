@@ -19,6 +19,7 @@ in buildFHSUserEnv rec {
     fontconfig
     freetype
     glib
+    fxload
     iproute2
     libstdcxx5
     libusb-compat-0_1
