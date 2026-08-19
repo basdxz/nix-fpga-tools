@@ -27,19 +27,19 @@ in buildFHSUserEnv rec {
     motif
     (motif3-compat pkgs)
     xilinx-jtag-fw
-    xorg.libICE
-    xorg.libSM
-    xorg.libX11
-    xorg.libXcursor
-    xorg.libXext
-    xorg.libXft
-    xorg.libXi
-    xorg.libXmu
-    xorg.libXp
-    xorg.libXrandr
-    xorg.libXrender
-    xorg.libXt
-    xorg.libXtst
+    libice
+    libsm
+    libx11
+    libxcursor
+    libxext
+    libxft
+    libxi
+    libxmu
+    libxp
+    libxrandr
+    libxrender
+    libxt
+    libxtst
     zlib
 
     # Xilinx ISE expects QT3 but works fine with QT5.

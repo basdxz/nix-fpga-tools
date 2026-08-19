@@ -1,7 +1,7 @@
 {
   description = "FPGA tools for Nix.";
 
-  inputs.nixpkgs.url = "nixpkgs/nixpkgs-unstable";
+  inputs.nixpkgs.url = "nixpkgs/nixos-26.05";
   inputs.nixpkgs_libstdcxx5.url = "nixpkgs/c8bb7b26f2c6ecc39be2c4ddde5f5d152e4abc65";
   inputs.flake-utils.url = "github:numtide/flake-utils";
 
