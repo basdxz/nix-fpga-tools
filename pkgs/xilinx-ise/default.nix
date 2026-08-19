@@ -21,7 +21,7 @@ in buildFHSUserEnv rec {
     glib
     fxload
     iproute2
-    libstdcxx5
+    libcxx
     libusb-compat-0_1
     libusb1
     libuuid
@@ -52,6 +52,7 @@ in buildFHSUserEnv rec {
   ];
 
   multiPkgs = pkgs: with pkgs; [
+    fxload
     ncurses5
   ];
 
